@@ -71,7 +71,7 @@ class TestLinkedList(unittest.TestCase):
         self.assertTrue(self.ll.search(10))
         self.assertFalse(self.ll.search(60))
 
-    def testindex_of(self):
+    def test_index_of(self):
         self.assertEqual(self.ll.index_of(10), 0)
         self.assertEqual(self.ll.index_of(20), 1)
         self.assertEqual(self.ll.index_of(30), 2)
