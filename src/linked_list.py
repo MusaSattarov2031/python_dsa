@@ -36,18 +36,19 @@ class LinkedList:
         res += "None"
         return res
 
-    def append(self, value):
-        if self.head == None:
-            self.head = Node(value)
+    def append(self, *values):# Tested 
+        for value in values:
+            if self.head == None:
+                self.head = Node(value)
+                self.size += 1
+                continue
+            curr = self.head
+            while curr.next != None:
+                curr = curr.next
+            curr.next = Node(value)
             self.size += 1
-            return
-        curr = self.head
-        while curr.next != None:
-            curr = curr.next
-        curr.next = Node(value)
-        self.size += 1
     
-    def prepend(self, value):
+    def prepend(self, value):# Tested
         if self.head == None:
             self.head = Node(value)
             self.size += 1
@@ -63,24 +64,33 @@ class LinkedList:
         return True
     
     def insert_at(self, value, index):
-        self.size +=1
-        if index == 0:
-            self.prepend(value)
+        if index == self.size:
+            self.append(value)
             return
         if self._isValidIndex(index):
+            if index == 0:
+                self.prepend(value)
+                return
             curr = self.head
             for i in range(0, index-1):
                 curr = curr.next
             temp = curr.next
             new_node = Node(value, temp)
             curr.next = new_node
+            self.size+=1
         else:
-            self.size -= 1
             raise IndexError
     
     def pop(self):
-        curr = self.head()
-        while curr.next.next != None:
+        if len(self) == 1:
+            res = self.head.value
+            self.head == None
+            self.size -= 1
+            return res
+        elif len(self) == 0:
+            raise IndexError
+        curr = self.head
+        while curr.next and curr.next.next:
             curr = curr.next
         res = curr.next.value
         curr.next = None
@@ -88,7 +98,7 @@ class LinkedList:
         return res
     
     def remove(self, value):
-        curr = self.head()
+        curr = self.head
         while curr.next != None:
             if curr.next.value == value:
                 curr.next = curr.next.next
@@ -117,6 +127,8 @@ class LinkedList:
         while curr != None:
             if curr.value == value:
                 return True
+            else:
+                curr = curr.next
         return False
     
     def index_of(self, value):
@@ -144,10 +156,7 @@ class LinkedList:
             curr.next = prev
             prev = curr
             curr = next_node
-        res = LinkedList()
-        res.head = prev
-        res.size = self.size
-        self = res
+        self.head = prev
     
     def has_cycle(self):
         slow = self.head
