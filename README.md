@@ -52,6 +52,6 @@ A custom Python implementation of a Singly Linked List, designed for pedagogical
 
 The implementation consists of two primary classes:
 
-    Node: The building block of the list, storing a value and a reference to the next node.
+    * Node: The building block of the list, storing a value and a reference to the next node.
 
-    LinkedList: The controller class managing the head reference and orchestration of node relationships.
+    * LinkedList: The controller class managing the head reference and orchestration of node relationships.
