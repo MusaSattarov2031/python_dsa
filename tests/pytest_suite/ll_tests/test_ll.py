@@ -93,4 +93,4 @@ def test_has_cycle(multiple_ll):
     while tail.next:
         tail = tail.next
     tail.next = multiple_ll.head
-    assert(multiple_ll.has_cycle())
+    assert multiple_ll.has_cycle()

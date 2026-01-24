@@ -36,7 +36,7 @@ class LinkedList:
         res += "None"
         return res
 
-    def append(self, *values):# Tested 
+    def append(self, *values):
         for value in values:
             if self.head == None:
                 self.head = Node(value)
@@ -48,7 +48,7 @@ class LinkedList:
             curr.next = Node(value)
             self._size += 1
     
-    def prepend(self, value):# Tested
+    def prepend(self, value):
         if self.head == None:
             self.head = Node(value)
             self._size += 1
