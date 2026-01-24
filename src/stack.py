@@ -1,4 +1,4 @@
-from linked_list import LinkedList
+from src.linked_list import LinkedList
 
 class Stack:
     """
@@ -13,16 +13,18 @@ class Stack:
         return len(self._data)
     
     def __str__(self):
-        res = ""
+        res = "Top->"
         curr = self._data.head
-        while curr:
+        while curr.next:
             res+=f"{curr.value}->"
-        res+="Top"
+            curr = curr.next
+        res+=f"{curr.value}"
         return res
     
-    def push(self, value):
-        """adds element in the end of stack"""
-        self._data.prepend(value)
+    def push(self, *values):
+        """adds element/elements in the end of stack"""
+        for value in values:
+            self._data.prepend(value)
 
 
     def pop(self):
@@ -40,6 +42,6 @@ class Stack:
 
     def is_empty(self):
         """returns True if stack is empty"""
-        if len(self._data == 0):
+        if len(self._data) == 0:
             return True
         return False
