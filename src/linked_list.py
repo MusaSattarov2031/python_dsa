@@ -6,10 +6,10 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-        self.size = 0
+        self._size = 0
     
     def __len__(self):
-        return self.size
+        return self._size
     
     def __getitem__(self, index):
         if not self._isValidIndex(index):
@@ -40,31 +40,31 @@ class LinkedList:
         for value in values:
             if self.head == None:
                 self.head = Node(value)
-                self.size += 1
+                self._size += 1
                 continue
             curr = self.head
             while curr.next != None:
                 curr = curr.next
             curr.next = Node(value)
-            self.size += 1
+            self._size += 1
     
     def prepend(self, value):# Tested
         if self.head == None:
             self.head = Node(value)
-            self.size += 1
+            self._size += 1
             return
         new_head = Node(value, self.head)
         self.head = new_head
-        self.size += 1
+        self._size += 1
 
 
     def _isValidIndex(self, index):
-        if index<0 or index>=self.size:
+        if index<0 or index>=self._size:
             return False
         return True
     
     def insert_at(self, value, index):
-        if index == self.size:
+        if index == self._size:
             self.append(value)
             return
         if self._isValidIndex(index):
@@ -77,7 +77,7 @@ class LinkedList:
             temp = curr.next
             new_node = Node(value, temp)
             curr.next = new_node
-            self.size+=1
+            self._size+=1
         else:
             raise IndexError
     
@@ -85,7 +85,7 @@ class LinkedList:
         if len(self) == 1:
             res = self.head.value
             self.head == None
-            self.size -= 1
+            self._size -= 1
             return res
         elif len(self) == 0:
             raise IndexError
@@ -94,15 +94,19 @@ class LinkedList:
             curr = curr.next
         res = curr.next.value
         curr.next = None
-        self.size -= 1
+        self._size -= 1
         return res
     
     def remove(self, value):
         curr = self.head
+        if curr.value == value:
+            self.head = self.head.next
+            self._size-=1
+            return
         while curr.next != None:
             if curr.next.value == value:
                 curr.next = curr.next.next
-                self.size -= 1
+                self._size -= 1
                 return
             else:
                 curr = curr.next
@@ -110,6 +114,7 @@ class LinkedList:
     def delete_at(self, index):
         if self._isValidIndex(index):
             if index == 0:
+                res = self.head.value
                 self.head = self.head.next
             else:
                 prev = self.head
@@ -117,8 +122,10 @@ class LinkedList:
                 for i in range(0, index-1):
                     prev = to_delete
                     to_delete = prev.next
+                res = to_delete.value
                 prev.next = to_delete.next
-            self.size -= 1
+            self._size -= 1
+            return res
         else:
             raise IndexError
     
@@ -132,6 +139,7 @@ class LinkedList:
         return False
     
     def index_of(self, value):
+        """Returns index of a value if found in list, otherwise  returns -1"""
         curr = self.head
         ind = 0
         while curr != None:
