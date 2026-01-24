@@ -18,14 +18,14 @@ def empty_ll():
 
 @pytest.fixture
 def single_ll():
-    """Tests for single noded linked list"""
+    """Tests for single noded linked list, value inside: 10->None"""
     ll = LinkedList()
     ll.append(10)
     return ll
 
 @pytest.fixture
 def multiple_ll():
-    """Tests for multiple noded linked list"""
+    """Tests for multiple noded linked list, values inside : 10->20->30->None"""
     ll = LinkedList()
     ll.append(10, 20, 30)
     return ll
