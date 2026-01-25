@@ -11,7 +11,7 @@ def empty_st():
 @pytest.fixture
 def full_st():
     """
-    Test Fixture for full stack, values Top->30->20->1
+    Test Fixture for full stack, values Top->30->20->10
     """
     st = Stack()
     st.push(10, 20, 30)
