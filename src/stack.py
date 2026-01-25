@@ -13,12 +13,13 @@ class Stack:
         return len(self._data)
     
     def __str__(self):
-        res = "Top->"
+        res = "Top"
         curr = self._data.head
-        while curr.next:
-            res+=f"{curr.value}->"
+        while curr:
+            res+=f"->{curr.value}"
             curr = curr.next
-        res+=f"{curr.value}"
+        if res == "Top":
+            return ""
         return res
     
     def push(self, *values):
