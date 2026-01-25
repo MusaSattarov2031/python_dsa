@@ -30,3 +30,7 @@ class TestStack(unittest.TestCase):
         self.assertTrue(self.st.is_empty())
         with self.assertRaises(IndexError):
             res = self.st.peek()
+
+    def test_str(self):
+        self.st.push(10, 20, 30)
+        self.assertEqual("Top->30->20->10", str(self.st))

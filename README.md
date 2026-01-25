@@ -30,7 +30,7 @@ The project is organized by architectural layers to ensure a clean separation of
 --- 
 ### Singly Linked List Implementation
 
-A custom Python implementation of a Singly Linked List, designed for pedagogical purposes in Data Structures and Algorithms
+A custom Python implementation of a Singly Linked List, designed for pedagogical purposes in Data Structures and Algorithms.
 
 ### Stack
 The Stack is a linear data structure that follows the LIFO principle. It is implemented using the LinkedList class to manage memory dynamically.
