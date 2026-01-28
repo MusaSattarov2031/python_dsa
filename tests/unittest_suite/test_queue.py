@@ -23,9 +23,9 @@ class TestQueue(unittest.TestCase):
         self.q.enqueue(20)
         self.q.enqueue(30)
 
-        res10 = self.deque()
-        res20 = self.deque()
-        res30 = self.deque()
+        res10 = self.q.deque()
+        res20 = self.q.deque()
+        res30 = self.q.deque()
 
         self.assertEqual(res10, 10)
         self.assertEqual(res20, 20)
