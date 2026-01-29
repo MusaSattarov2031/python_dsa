@@ -15,10 +15,29 @@ class BinaryTree():
         if curr is None:
             return 0
         
-        return 1+self._get_size(curr.right_child) + self._get_size(curr.left_child)
+        return 1 + self._get_size(curr.right_child) + self._get_size(curr.left_child)
 
     def __str__(self):
-        pass
+        """
+        Prints tree in acsended order        
+        """
+        res = ""
+        if not self.head:
+            return ""
+        else:
+            res += self._rec_print(self.head)
+        
+        return (res.strip())
+    
+    def _rec_print(self, curr: Node):
+        res = ""
+        if curr.left_child:
+            res += self._rec_print(curr.left_child)
+        res += f"{curr.value} "
+        if curr.right_child:
+            res += self._rec_print(curr.right_child)
+        return res
+
     
     def add_node(self, value):
         if not self.head:
@@ -37,8 +56,4 @@ class BinaryTree():
                 self._add_recursive(curr.right_child, value)
             else:
                 curr.right_child = Node(value)
-
-
-    def clear(self):
-        self.head = None
 
