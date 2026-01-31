@@ -95,17 +95,12 @@ class BinaryTree():
         return node
     
     def search(self, value):
-        return self._search_recursively(self.head, value)
-    
-    def _search_recursively(self, curr, value):
-        if not curr:
-            return False
-        if curr.value == value:
-            return True
-        elif curr.value < value:
-            return self._search_recursively(curr.right_child, value)
-        else:
-            return self._search_recursively(curr.left_child, value)
+        curr = self.head
+        while curr:
+            if curr.value == value:
+                return True
+            curr = curr.left_child if value < curr.value else curr.right_child
+        return False
     
     def get_height(self):
         return self._get_height_rec(self.head)
@@ -143,4 +138,3 @@ class BinaryTree():
                     to_visit.enqueue(res.right_child)
         
         return results
-            
