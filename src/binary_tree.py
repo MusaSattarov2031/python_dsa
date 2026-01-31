@@ -57,3 +57,37 @@ class BinaryTree():
             else:
                 curr.right_child = Node(value)
 
+    def delete_node(self, value):
+        """
+        Delete node, dont touch child nodes
+        """
+
+        self.head = self._delete_recursively(self.head, value)
+    
+    def _delete_recursively(self, curr, value):
+        if curr:
+            if curr.value > value:
+                curr.left_child = self._delete_recursively(curr.left_child, value)
+            elif curr.value < value:
+                curr.right_child = self._delete_recursively(curr.right_child, value)
+            else:
+                # Case if at edge - Done
+                # Case if only right exists
+                # Case if only left exists 
+                # case if both exists
+                if curr.right_child and curr.left_child:
+                    successor = self._get_min(curr.right_child)
+                    curr.value = successor.value
+                    curr.right_child = self._delete_recursively(curr.right_child, successor.value)
+                elif curr.right_child:# Case if only right exists
+                    return curr.right_child
+                elif curr.left_child: # Case if only left exists
+                    return curr.left_child
+                else:
+                    return None
+        return curr
+    
+    def _get_min(self, node):
+        while node.left_child:
+            node = node.left_child
+        return node
