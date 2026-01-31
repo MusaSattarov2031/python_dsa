@@ -1,3 +1,5 @@
+from src.queue import Queue
+
 class Node:
     def __init__(self, value, left = None, right = None):
         self.value = value
@@ -91,3 +93,54 @@ class BinaryTree():
         while node.left_child:
             node = node.left_child
         return node
+    
+    def search(self, value):
+        return self._search_recursively(self.head, value)
+    
+    def _search_recursively(self, curr, value):
+        if not curr:
+            return False
+        if curr.value == value:
+            return True
+        elif curr.value < value:
+            return self._search_recursively(curr.right_child, value)
+        else:
+            return self._search_recursively(curr.left_child, value)
+    
+    def get_height(self):
+        return self._get_height_rec(self.head)
+    
+    def _get_height_rec(self, curr):
+        if not curr:
+            return -1
+        return 1 + max(self._get_height_rec(curr.right_child),
+                       self._get_height_rec(curr.left_child))
+    
+    def find_min(self):
+        curr = self.head
+        return self._get_min(curr).value
+    
+    def find_max(self):
+        curr = self.head
+        while curr.right_child:
+            curr = curr.right_child
+
+        return curr.value
+    
+    def as_list(self):
+        results = []
+        to_visit = Queue()
+        if self.head:
+        
+            to_visit.enqueue(self.head)
+
+            while not to_visit.is_empty():
+                res = to_visit.deque()
+                results.append(res.value)
+                if res.left_child:
+                    to_visit.enqueue(res.left_child)
+                if res.right_child:
+                    to_visit.enqueue(res.right_child)
+        
+        return results
+            
