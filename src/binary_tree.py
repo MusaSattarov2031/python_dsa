@@ -112,10 +112,14 @@ class BinaryTree():
                        self._get_height_rec(curr.left_child))
     
     def find_min(self):
+        if not self.head:
+            raise ValueError("Tree is empty")
         curr = self.head
         return self._get_min(curr).value
     
     def find_max(self):
+        if not self.head:
+            raise ValueError("Tree is empty")
         curr = self.head
         while curr.right_child:
             curr = curr.right_child
