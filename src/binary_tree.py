@@ -142,3 +142,6 @@ class BinaryTree():
                     to_visit.enqueue(res.right_child)
         
         return results
+    
+    def clear(self):
+        self.head = None
