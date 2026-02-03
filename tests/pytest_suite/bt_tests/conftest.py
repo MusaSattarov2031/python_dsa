@@ -12,10 +12,12 @@ def full_random_bt():
     """Return a full binary tree with 10 random numbers between 0 and 100, and main root 50, included"""
     bt = BinaryTree()
     bt.add_node(50)
-    for _ in range(10):
-        n = random.randint(0, 100)
-        if not bt.search(n):
-            bt.add_node(random.randint(0, 100))
+    for _ in range(9):
+        while True:
+            n = random.randint(0, 100)
+            if not bt.search(n):
+                bt.add_node(n)
+                break
     return bt
 
 @pytest.fixture
